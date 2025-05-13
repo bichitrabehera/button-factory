@@ -56,7 +56,7 @@ const CustomDesign = () => {
       (gltf) => {
         const model = gltf.scene;
         modelRef.current = model;
-        model.scale.set(3, 3, 3);
+        model.scale.set(0.6, 0.6, 0.6);
         model.traverse((child) => {
           if (child.isMesh) {
             child.material = child.material.clone();
@@ -146,7 +146,7 @@ const CustomDesign = () => {
     e.preventDefault();
     alert(
       "Custom design submitted: " +
-        JSON.stringify({ text, color, bgColor, fontSize, svgFillColor })
+      JSON.stringify({ text, color, bgColor, fontSize, svgFillColor })
     );
   };
 
