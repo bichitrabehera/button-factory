@@ -30,23 +30,18 @@ export default function Page() {
 
       if (signInAttempt.status === "complete") {
         await setActive({ session: signInAttempt.createdSessionId });
-        router.replace("/");
+        // Don't check role here — go to a common landing route
+        router.replace("/post-auth-redirect");
       } else {
-        console.error(
-          "Sign-in incomplete:",
-          JSON.stringify(signInAttempt, null, 2)
-        );
         Alert.alert(
           "Sign-in incomplete",
           "Please complete all sign-in steps or try again."
         );
       }
     } catch (err) {
-      console.error("Sign-in error:", JSON.stringify(err, null, 2));
       Alert.alert(
         "Sign-in failed",
-        err.errors?.[0]?.message ||
-          "An unexpected error occurred. Please try again."
+        err.errors?.[0]?.message || "An unexpected error occurred. Please try again."
       );
     }
   };
@@ -188,8 +183,8 @@ const styles = StyleSheet.create({
     height: 50,
     color: "#111827",
     fontSize: 16,
-  paddingVertical: 12,
-  paddingRight: 10,
+    paddingVertical: 12,
+    paddingRight: 10,
   },
   forgotPassword: {
     alignSelf: "flex-end",
